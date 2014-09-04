@@ -1,0 +1,5 @@
+/* In case you're curious, the css names were taken from theatre terms. There are 3 types of a theatrical cue: warning, standby and go. */
+
+.cue-warning {}
+.cue-standby {}
+.cue-go {}
