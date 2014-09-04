@@ -1,4 +1,5 @@
 cue
 ===
 
-Simple framework to load new pages in the browser without refreshing the browser. Cheers!
+Simple JavaScript to load a new page in the browser without refreshing the browser. Cheers!
+
