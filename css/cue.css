@@ -1,5 +1,67 @@
-/* In case you're curious, the css names were taken from theatre terms. There are 3 types of a theatrical cue: warning, standby and go. */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'helvetica', 'arial', sans-sereif;
+        }
 
-.cue-warning {}
-.cue-standby {}
-.cue-go {}
+        body {
+            background: #f8f8f8;
+        }
+
+        h1 {
+            color: #FFF;
+            font-size: 36px;
+            line-height: 1.5;
+        }
+
+        p { 
+            color: #FFF;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .stage {
+        }
+
+        .content {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow-x: scroll;
+            background: #49AEC0;
+            padding: 150px 100px;
+            -webkit-transition: all 800ms ease;
+        }
+
+        .content.exit {
+            -webkit-transform: translateY(-1000px) scale(.1);
+            opacity: 0;
+        }
+
+        .content.standby {
+            -webkit-transform: translateY(1000px) scale(.1);
+            opacity: 0;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            z-index: 8888;
+            padding: 20px;
+        }
+
+        .navigation li {
+            float: left;
+            list-style: none;
+        }
+
+        .navigation li a {
+            color: #49AEC0;
+            margin: 10px 20px;
+            text-decoration: none;
+        }

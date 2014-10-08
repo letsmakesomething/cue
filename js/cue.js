@@ -1,39 +1,38 @@
 var cue = cue || {};
 
-cue.load = function(url) {
+cue.utility = (function(){
+
+        // Fire cue.load() when navigation link is clicked
+        $('.navigation ul li a').on('click', function(e){
+            e.preventDefault();
+            var link = $(this).attr('href');
+            cue.load(link);
+        });
+
+}());
+
+cue.load = function(link) {
    
-    // https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
+        // Set current page's content
+        $('.content').addClass("on-stage");
 
-    var httpRequest;
+        // Create stanby container
+        $('.stage').append('<div class="content standby"></div>');
+        
+        // Add new page's content to the standby container
+        $('.content.standby').load('' + link + ' .content', function(){
 
-    if (window.XMLHttpRequest) { // Mozilla, Safari, ...
-        httpRequest = new XMLHttpRequest();
-    } else if (window.ActiveXObject) { // IE 8 and older
-        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+            //Animate old content off of page
+            $('.content.on-stage').addClass("exit");
 
-    httpRequest.onreadystatechange = function(){
-        if (httpRequest.readyState === 4) {
-            // everything is good, the response is received
-            if (httpRequest.status === 200) {
-                // perfect!
-                var data = httpRequest.responseText;
+             //Remove old content once page is done animating
+            setTimeout(function(){
+                $('.content.on-stage.exit').remove()
+            }, 1000);
 
-                console.log(data);
+            //Bring new content onto stage
+            $('.content.standby').addClass('on-stage').removeClass("standby");
 
-            } else {
-                // there was a problem with the request,
-                // for example the response may contain a 404 (Not Found)
-                // or 500 (Internal Server Error) response code
-                alert("Danger Mr. Robinson! Error!!!");
-            }
-        } else {
-            // still not ready
-            console.log("Danger Mr. Robinson! Not ready!!!");
-        }
-
-    };
-    httpRequest.open('GET', url, true);
-    httpRequest.send(null);
+        });
 
 }
